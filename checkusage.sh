@@ -20,8 +20,8 @@ get_server_ip() {
 # Function to check CPU and memory usage
 check_usage() {
     # Get CPU usage percentage
-    cpu_usage=$(htop -bn1 | awk '/^%Cpu/{print $2}' | cut -d. -f1)
-
+    cpu_usage=$(top -bn1 | awk '/%Cpu/{print $2}' | cut -d. -f1)
+    
     # Get memory usage percentage
     mem_usage=$(free | awk '/Mem/{printf("%.2f"), $3/$2*100}')
 
