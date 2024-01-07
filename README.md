@@ -1,5 +1,6 @@
 # autorebootoverusagelinux
-Auto Reboot Script if CPU/Memory Usage is over 80%
+Auto Reboot server if CPU/Memory Usage is over 80%
+it will check every 5 minutes
 
 Open Crontab :
 <pre>crontab -e</pre>
