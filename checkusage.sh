@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Telegram Bot Token and Chat ID
-TELEGRAM_BOT_TOKEN="Your telegram bot token"
-TELEGRAM_CHAT_ID="Telegram Chat ID"
+TELEGRAM_BOT_TOKEN=""
+TELEGRAM_CHAT_ID=""
 
 # Function to send message to Telegram
 send_telegram_message() {
@@ -13,14 +13,14 @@ send_telegram_message() {
 # Function to get server IP
 get_server_ip() {
     hostname=$(hostname)
-    server_ip=$(nslookup "$hostname" | awk '/^Address: / { print $2 }' | tail -n1)
+    server_ip=$(hostname -I | awk '{print $1}')
     echo "$server_ip"
 }
 
 # Function to check CPU and memory usage
 check_usage() {
     # Get CPU usage percentage
-    cpu_usage=$(top -bn1 | grep "Cpu(s)" | awk '{print $2}' | awk -F. '{print $1}')
+    cpu_usage=$(htop -bn1 | awk '/^%Cpu/{print $2}' | cut -d. -f1)
 
     # Get memory usage percentage
     mem_usage=$(free | awk '/Mem/{printf("%.2f"), $3/$2*100}')
